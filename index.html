@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registro de Asistencia</title>
+  
+  <!-- Fuente Google Sans -->
+  <link href="https://fonts.cdnfonts.com/css/google-sans" rel="stylesheet">
+
+  <style>
+    body {
+      font-family: 'Product Sans', 'Google Sans', Arial, sans-serif;
+      background-color: #ffffff;
+      color: #1a202c;
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .container {
+      background: #ffffff;
+      max-width: 440px;
+      width: 100%;
+      border-radius: 16px;
+      border: 1px solid #e2e8f0;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+      overflow: hidden;
+    }
+
+    .header {
+      background-color: #ffffff;
+      text-align: center;
+      padding: 28px 20px 10px 20px;
+    }
+
+    .header h2 {
+      margin: 0;
+      font-size: 20px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      font-weight: 700;
+      color: #111111;
+    }
+
+    .header p {
+      margin: 8px 0 0 0;
+      font-size: 14px;
+      color: #4a5568;
+    }
+
+    form {
+      padding: 20px 24px 28px 24px;
+    }
+
+    .form-group {
+      margin-bottom: 14px;
+    }
+
+    label {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 5px;
+      color: #333333;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 11px 12px;
+      border: 1px solid #cbd5e0;
+      border-radius: 8px;
+      box-sizing: border-box;
+      font-size: 14px;
+      font-family: 'Product Sans', 'Google Sans', sans-serif;
+      background-color: #ffffff;
+      color: #1a202c;
+    }
+
+    input:focus, select:focus {
+      border-color: #111111;
+      outline: none;
+    }
+
+    .date-row {
+      display: flex;
+      gap: 8px;
+    }
+
+    .date-row input {
+      text-align: center;
+    }
+
+    .btn-submit {
+      width: 100%;
+      background-color: #111111;
+      color: #ffffff;
+      border: none;
+      padding: 14px;
+      font-size: 15px;
+      font-weight: bold;
+      border-radius: 8px;
+      cursor: pointer;
+      text-transform: uppercase;
+      margin-top: 8px;
+      transition: background 0.2s;
+      font-family: 'Product Sans', 'Google Sans', sans-serif;
+    }
+
+    .btn-submit:hover {
+      background-color: #333333;
+    }
+
+    .social-divider {
+      margin: 22px 0 14px 0;
+      border-top: 1px solid #edf2f7;
+      padding-top: 16px;
+      text-align: center;
+      font-size: 12px;
+      font-weight: 600;
+      color: #718096;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    /* BOTONES DE REDES SOCIALES */
+    .btn-social {
+      display: block;
+      width: 100%;
+      box-sizing: border-box;
+      color: #ffffff;
+      text-decoration: none;
+      padding: 12px 14px;
+      font-size: 14px;
+      font-weight: 600;
+      border-radius: 8px;
+      margin-top: 10px;
+      transition: opacity 0.2s;
+      text-align: center;
+    }
+
+    .btn-social:hover {
+      opacity: 0.9;
+    }
+
+    .btn-whatsapp {
+      background-color: #25D366;
+    }
+
+    .btn-facebook {
+      background-color: #1877F2;
+    }
+
+    .btn-instagram {
+      background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+    }
+
+    /* MENSAJE DE ÉXITO */
+    #successMessage {
+      display: none;
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    #successMessage h3 {
+      margin: 0 0 10px 0;
+      font-size: 22px;
+      color: #111111;
+    }
+
+    #successMessage p {
+      color: #4a5568;
+      font-size: 14px;
+      margin: 0;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <div class="header">
+    <h2>Registro de Asistencia</h2>
+    <p>Completa tus datos para registrarte.</p>
+  </div>
+
+  <!-- FORMULARIO DE REGISTRO -->
+  <form id="regForm">
+    <div class="form-group">
+      <label>Nombre *</label>
+      <input type="text" id="nombre" required placeholder="Ej. Eduardo">
+    </div>
+
+    <div class="form-group">
+      <label>Apellidos *</label>
+      <input type="text" id="apellidos" required placeholder="Ej. Rodríguez Hernández">
+    </div>
+
+    <!-- FECHA DE NACIMIENTO -->
+    <div class="form-group">
+      <label>Fecha de Nacimiento *</label>
+      <div class="date-row">
+        <input type="number" id="diaNac" min="1" max="31" placeholder="Día" required style="flex: 1;">
+        
+        <select id="mesNac" required style="flex: 2;">
+          <option value="" disabled selected>Mes</option>
+          <option value="Enero">Enero</option>
+          <option value="Febrero">Febrero</option>
+          <option value="Marzo">Marzo</option>
+          <option value="Abril">Abril</option>
+          <option value="Mayo">Mayo</option>
+          <option value="Junio">Junio</option>
+          <option value="Julio">Julio</option>
+          <option value="Agosto">Agosto</option>
+          <option value="Septiembre">Septiembre</option>
+          <option value="Octubre">Octubre</option>
+          <option value="Noviembre">Noviembre</option>
+          <option value="Diciembre">Diciembre</option>
+        </select>
+
+        <input type="number" id="anioNac" min="1920" max="2026" placeholder="Año" required style="flex: 1.2;">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Teléfono *</label>
+      <input type="tel" id="telefono" required placeholder="Ej. 6181234567">
+    </div>
+
+    <div class="form-group">
+      <label>Municipio *</label>
+      <select id="municipio" required>
+        <option value="" disabled selected>-- Selecciona un municipio --</option>
+        <option value="Canatlán">Canatlán</option>
+        <option value="Canelas">Canelas</option>
+        <option value="Coneto de Comonfort">Coneto de Comonfort</option>
+        <option value="Cuencamé">Cuencamé</option>
+        <option value="Durango">Durango</option>
+        <option value="El Oro">El Oro</option>
+        <option value="General Simón Bolívar">General Simón Bolívar</option>
+        <option value="Gómez Palacio">Gómez Palacio</option>
+        <option value="Guadalupe Victoria">Guadalupe Victoria</option>
+        <option value="Guanaceví">Guanaceví</option>
+        <option value="Hidalgo">Hidalgo</option>
+        <option value="Indé">Indé</option>
+        <option value="Lerdo">Lerdo</option>
+        <option value="Mapimí">Mapimí</option>
+        <option value="Mezquital">Mezquital</option>
+        <option value="Nazas">Nazas</option>
+        <option value="Nombre de Dios">Nombre de Dios</option>
+        <option value="Nuevo Ideal">Nuevo Ideal</option>
+        <option value="Ocampo">Ocampo</option>
+        <option value="Otáez">Otáez</option>
+        <option value="Pánuco de Coronado">Pánuco de Coronado</option>
+        <option value="Peñón Blanco">Peñón Blanco</option>
+        <option value="Poanas">Poanas</option>
+        <option value="Pueblo Nuevo">Pueblo Nuevo</option>
+        <option value="Rodeo">Rodeo</option>
+        <option value="San Bernardo">San Bernardo</option>
+        <option value="San Dimas">San Dimas</option>
+        <option value="San Juan de Guadalupe">San Juan de Guadalupe</option>
+        <option value="San Juan del Río">San Juan del Río</option>
+        <option value="San Luis del Cordero">San Luis del Cordero</option>
+        <option value="San Pedro del Gallo">San Pedro del Gallo</option>
+        <option value="Santa Clara">Santa Clara</option>
+        <option value="Santiago Papasquiaro">Santiago Papasquiaro</option>
+        <option value="Súchil">Súchil</option>
+        <option value="Tamazula">Tamazula</option>
+        <option value="Tepehuanes">Tepehuanes</option>
+        <option value="Tlahualilo">Tlahualilo</option>
+        <option value="Topia">Topia</option>
+        <option value="Vicente Guerrero">Vicente Guerrero</option>
+      </select>
+    </div>
+
+    <button type="submit" id="btnSubmit" class="btn-submit">Registrarse</button>
+
+    <div class="social-divider">Mantente conectado</div>
+
+    <!-- Enlaces a redes -->
+    <a href="https://whatsapp.com/channel/0029VbAn5us2ZjCeagqPB83J" target="_blank" rel="noopener noreferrer" class="btn-social btn-whatsapp">
+      Únete a nuestro Canal de WhatsApp
+    </a>
+
+    <a href="https://www.facebook.com/share/1J8cgQdRdk/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" class="btn-social btn-facebook">
+      Seguir a Eduardo Rodríguez en Facebook
+    </a>
+
+    <a href="https://www.instagram.com/eduardguezh?avpt=MXE2ZGZlYTdudXZycA==" target="_blank" rel="noopener noreferrer" class="btn-social btn-instagram">
+      Seguir a Eduardo en Instagram
+    </a>
+  </form>
+
+  <!-- MENSAJE DE ÉXITO (SIN QR) -->
+  <div id="successMessage">
+    <h3>¡Registro Exitoso!</h3>
+    <p>Tus datos han sido guardados correctamente. ¡Muchas gracias!</p>
+  </div>
+</div>
+
+<script>
+  const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbycpx93osfVG15za7Ilyqy_vt3F9yOIZ4u9VEH2-unxhbfI1kSTy-dh_tmAIwJFWwpuyg/exec';
+
+  const form = document.getElementById('regForm');
+  const successMessage = document.getElementById('successMessage');
+
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    // 1. Obtener valores
+    const nombre = document.getElementById('nombre').value.trim();
+    const apellidos = document.getElementById('apellidos').value.trim();
+    const telefono = document.getElementById('telefono').value.trim();
+    const municipio = document.getElementById('municipio').value.trim();
+
+    const dia = document.getElementById('diaNac').value.padStart(2, '0');
+    const mes = document.getElementById('mesNac').value;
+    const anio = document.getElementById('anioNac').value;
+    const fechaNacimiento = `${dia}/${mes}/${anio}`;
+
+    const folioUnico = 'REG-' + Date.now().toString().slice(-6);
+
+    const datosRegistro = {
+      folio: folioUnico,
+      nombre: nombre,
+      apellidos: apellidos,
+      fechaNacimiento: fechaNacimiento,
+      telefono: telefono,
+      municipio: municipio
+    };
+
+    // 2. Enviar a Google Sheets
+    fetch(SCRIPT_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: {
+        'Content-Type': 'text/plain'
+      },
+      body: JSON.stringify(datosRegistro)
+    }).catch(err => console.error('Error enviando datos:', err));
+
+    // 3. Ocultar formulario y mostrar mensaje de éxito
+    form.style.display = 'none';
+    successMessage.style.display = 'block';
+  });
+</script>
+</body>
+</html>
